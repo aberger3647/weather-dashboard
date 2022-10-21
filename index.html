@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css">
+  <title>Weather Dashboard</title>
+</head>
+
+<body class="flex-column min-100-vh">
+  <header>
+    <h1>Weather Dashboard</h1>
+  </header>
+
+    <div class="col-md-4">
+
+      <div class="container" id="city-search">
+        <h3>Search for a City:</h3>
+        <form id="city-form">
+          <input name="city" id="city" type="text" placeholder="city">
+          <button type="submit" class="btn" id="search-btn">Search</button>
+        </form>
+      </div>
+
+      <div class="container" id="city-buttons">
+
+        <a class="row" class="btn btn-block p-3 my-2 btn-info">Atlanta</a>
+        <a class="row" class="btn btn-block p-3 my-2 btn-info">Denver</a>
+        <a class="row" class="btn btn-block p-3 my-2 btn-info">Seattle</a>
+        <a class="row" class="btn btn-block p-3 my-2 btn-info">San Francisco</a>
+        <a class="row" class="btn btn-block p-3 my-2 btn-info">Orlando</a>
+        <a class="row" class="btn btn-block p-3 my-2 btn-info">New York</a>
+        <a class="row" class="btn btn-block p-3 my-2 btn-info">Chicago</a>
+        <a class="row" class="btn btn-block p-3 my-2 btn-info">Austin</a>
+
+      </div>
+
+    </div>
+
+    <div class="col-md-8" id="forecast">
+
+        <div class="row" id="todays-forecast">
+            <h3>Atlanta</h3>
+            <p id="current-temp">Temp:</p>
+            <p id="current-wind">Wind:</p>
+            <p id="current-humidity">Humidity:</p>
+        </div>
+
+        <div class="row" id="five-day-forecast">
+
+            <h4>5-Day Forecast:</h4>
+
+        
+        </div>
+    </div>
+
+  </main>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.slim.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
+  <script src="./script.js"></script>
+</body>
+
+</html>
