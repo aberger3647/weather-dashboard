@@ -8,6 +8,9 @@ h1 {
 
 #temp-wind-hum, #city-date, #current-icon {
   display:block;
-  margin-right:60px;
 }
 
+#current-data, #five-day-forecast {
+  display:flex;
+  justify-content:space-evenly;
+}

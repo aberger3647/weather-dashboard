@@ -52,10 +52,10 @@ var getFiveDayForecast = function (lat, lon) {
         fiveDayLabel.text('5-Day Forecast:');
         var fiveDayForecast = $('#five-day-forecast');
         fiveDayForecast.empty();
-        cityInputEl.empty();
+        $('#city-form')[0].reset();
         for (var i = 0; i < data.list.length; i+=8) {
             var html = ` 
-            <div class="card" style="width: 11rem; background-color: rgb(0, 157, 255); margin: 0em 0em 1em 1em;">
+            <div class="card" style="width: 11rem; background-color: rgb(0, 157, 255); margin-bottom: 1em;">
             <div class="card-body">
             <h5 class="card-title" style="color:white;">${moment.unix(data.list[i].dt).format('MM/DD/YYYY')}</h5>
             <img src="http://openweathermap.org/img/wn/${data.list[i].weather[0].icon}.png">
