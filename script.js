@@ -31,10 +31,10 @@ var getCurrentWeather = function (lat, lon) {
         var currentTemp = $('#current-temp');
         var currentWind = $('#current-wind');
         var currentHumidity = $('#current-humidity');
-        currentCity.text(data[0].name);
+        currentCity.text(data.name);
         currentDate.text(moment().format('MM/DD/YYYY'));
-        currentIcon.html(`<img src="http://openweathermap.org/img/wn/${data.list[i].weather[0].icon}@2x.png">`);
-        currentTemp.text('Temp: ' + data.main.temp + ' F');
+        currentIcon.html(`<img src="http://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png">`);
+        currentTemp.text('Temp: ' + data.main.temp + '°F');
         currentWind.text('Wind: ' + data.wind.speed + ' MPH');
         currentHumidity.text('Humidity: ' + data.main.humidity + '%');
     })
@@ -48,6 +48,8 @@ var getFiveDayForecast = function (lat, lon) {
     })
     .then(function (data) {
         console.log(data);
+        var fiveDayLabel = $('#five-day-label');
+        fiveDayLabel.text('5-Day Forecast:');
         var fiveDayForecast = $('#five-day-forecast');
         fiveDayForecast.empty();
         cityInputEl.empty();
@@ -56,8 +58,8 @@ var getFiveDayForecast = function (lat, lon) {
             <div class="card" style="width: 11rem; background-color: rgb(0, 157, 255); margin: 0em 0em 1em 1em;">
             <div class="card-body">
             <h5 class="card-title" style="color:white;">${moment.unix(data.list[i].dt).format('MM/DD/YYYY')}</h5>
-            <img src="http://openweathermap.org/img/wn/${data.list[i].weather[0].icon}@2x.png">
-            <p class="card-text" style="color:white;">Temp: ${data.list[i].main.temp}° F</p>
+            <img src="http://openweathermap.org/img/wn/${data.list[i].weather[0].icon}.png">
+            <p class="card-text" style="color:white;">Temp: ${data.list[i].main.temp}°F</p>
             <p class="card-text" style="color:white;">Wind: ${data.list[i].wind.speed} MPH</p>
             <p class="card-text" style="color:white;">Humidity: ${data.list[i].main.humidity}%</p>
             </div>

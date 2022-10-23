@@ -6,6 +6,8 @@ h1 {
   color: white;
 }
 
-#todays-forecast {
+#temp-wind-hum, #city-date, #current-icon {
   display:block;
+  margin-right:60px;
 }
+
