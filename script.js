@@ -81,20 +81,30 @@ var storeCity = function (lat, lon) {
     .then(function (data) {
         console.log(data);
 
-        function addCityButtonsToDiv() {
-            var storedCityEl = $('<button class="btn btn-primary">');
-            var storedCity = storedCityEl.text(data.name);
-            $('#search-history').append(storedCity);
-        }
-
+        // create array to hold cities
         var citiesArr= [];
         var city = data.name;
+        // if the array does not include city, add it to the array
         if (!citiesArr.includes(city)) {
             citiesArr.push(city);
         }
         console.log(citiesArr);
-        citiesArr.forEach(addCityButtonsToDiv);
+        // add cities array to local storage
+        var storeCities = localStorage.setItem('city', JSON.stringify(citiesArr));
+        // get cities array from local storage
+        var getStoredCity = localStorage.getItem('city', JSON.parse(storeCities));
+        // reassign cities array to stored array
+        citiesArr = getStoredCity;
+        // add each item in array to button and div
+        for (var i = 0; i < citiesArr.length; i++) {
+            var storedCityEl = $('<button class="btn btn-primary">');
+            var storedCity = storedCityEl.text(getStoredCity[i]);
+            $('#search-history').append(storedCity);
+        }
     })
 }
 
 submitButtonEl.on('click', getCoordinates);
+
+// city repeats appear in div
+// put array into local storage
