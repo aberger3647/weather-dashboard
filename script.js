@@ -1,9 +1,9 @@
 var submitButtonEl = $('#search-btn');
-var cityInputEl = $('#city-input');
 
 // create function to get coordinates based on city input. pass latitude and longitude into getFiveDayForecast and getCurrentWeather functions
 var getCoordinates = function(event) {
     event.preventDefault();
+    var cityInputEl = $('#city-input');
     console.log(cityInputEl);
     var apiUrl = `https://api.openweathermap.org/geo/1.0/direct?q=${cityInputEl.val()}&appid=4709f071f7e8e51ca2c428e9f96726ca`;
     fetch(apiUrl)
@@ -14,6 +14,7 @@ var getCoordinates = function(event) {
             console.log(data);
             getFiveDayForecast(data[0].lat, data[0].lon);
             getCurrentWeather(data[0].lat, data[0].lon);
+            storeCity(data[0].lat, data[0].lon);
         })
 }
 
@@ -71,11 +72,29 @@ var getFiveDayForecast = function (lat, lon) {
     })
 }
 
+var storeCity = function (lat, lon) {
+    var apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=imperial&appid=4709f071f7e8e51ca2c428e9f96726ca`;
+    fetch(apiUrl)
+    .then(function (response) {
+        return response.json();
+    })
+    .then(function (data) {
+        console.log(data);
 
+        function addCityButtonsToDiv() {
+            var storedCityEl = $('<button class="btn btn-primary">');
+            var storedCity = storedCityEl.text(data.name);
+            $('#search-history').append(storedCity);
+        }
 
+        var citiesArr= [];
+        var city = data.name;
+        if (!citiesArr.includes(city)) {
+            citiesArr.push(city);
+        }
+        console.log(citiesArr);
+        citiesArr.forEach(addCityButtonsToDiv);
+    })
+}
 
 submitButtonEl.on('click', getCoordinates);
-
-// display current city on page with localstorage
-// currentCity.text() = $('#city');
-
