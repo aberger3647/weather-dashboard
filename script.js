@@ -8,7 +8,7 @@ function handleSearch(event) {
 
 // create function to get coordinates based on city input. pass latitude and longitude into getFiveDayForecast and getCurrentWeather functions
 var getCoordinates = function (query) {
-  
+
     var apiUrl = `https://api.openweathermap.org/geo/1.0/direct?q=${query}&appid=4709f071f7e8e51ca2c428e9f96726ca`;
     fetch(apiUrl)
         .then(function (response) {
@@ -19,7 +19,6 @@ var getCoordinates = function (query) {
             getFiveDayForecast(data[0].lat, data[0].lon);
             getCurrentWeather(data[0].lat, data[0].lon);
             storeCity(data[0].lat, data[0].lon);
-         
         })
 }
 
@@ -99,10 +98,8 @@ var storeCity = function (lat, lon) {
                 citiesArr.push(city);
             }
             localStorage.setItem('city', JSON.stringify(citiesArr));
-            console.log(citiesArr);
-        init();
+            init();
         })
-
 }
 
 function getCities() {
@@ -120,10 +117,10 @@ function init() {
             var storedCityEl = $('<button class="btn btn-primary">');
             var storedCity = storedCityEl.text(citiesArr[i]);
             $('#search-history').append(storedCity);
-    }
-
+        }
     }
 }
+
 init();
 
 submitButtonEl.on('click', handleSearch);
@@ -133,6 +130,3 @@ function reSearch(event) {
     getCoordinates(event.target.innerText)
 
 }
-// use event bubbling, and event.Target.innerText on search history div to make search history buttons clickable
-// city repeats appear in div
-// put array into local storage
